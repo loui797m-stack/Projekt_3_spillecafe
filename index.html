@@ -1,9 +1,174 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Find et spil</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body></body>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cheaaat - Find et spil</h1>
+      </header>
+
+      <main>
+        <div class="search-container">
+          <!-- Et søgefelt er et tekstfelt med en knap, der hedder "Søg" -->
+          <form id="search-form" class="search-row">
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Søg efter spil..."
+              class="search-input"
+            />
+            <button type="submit" id="search-button" class="search-button">
+              Søg
+            </button>
+          </form>
+
+          <select id="predefined-search" class="predefined-select">
+            <option value="titel">Sorter: Titel A–Å</option>
+            <option value="tid-kort">Sorter: Spilletid, kortest først</option>
+            <option value="tid-lang">Sorter: Spilletid, længst først</option>
+          </select>
+
+          <button id="filter-toggle" class="filter-button">
+            <span>🔍 Filtrer</span>
+            <span id="filter-badge" class="badge" hidden>0</span>
+          </button>
+        </div>
+
+        <p id="result-count" class="result-count"></p>
+
+        <div id="filter-panel" class="filter-panel">
+          <div class="filter-header">
+            <h2>Filtrer Spil</h2>
+            <button id="close-filter" class="close-button">&times;</button>
+          </div>
+
+          <div class="filter-content">
+            <div class="filter-group">
+              <label class="filter-label">Genre</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="genre" value="selskabsspil" />
+                  Selskabsspil
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="genre" value="kortspil" />
+                  Kortspil
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="genre" value="quiz" /> Quiz
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="genre" value="samarbejde" />
+                  Samarbejde
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="genre" value="strategispil" />
+                  Strategispil
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label"
+                >Antal spillere:
+                <output id="players-output">Alle</output></label
+              >
+              <input
+                type="range"
+                id="players-range"
+                min="0"
+                max="20"
+                value="0"
+                class="range-input"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label"
+                >Spilletid:
+                <output id="time-output">Ingen grænse</output></label
+              >
+              <input
+                type="range"
+                id="time-range"
+                min="10"
+                max="90"
+                step="5"
+                value="90"
+                class="range-input"
+              />
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Sværhedsgrad</label>
+              <div class="rating-group">
+                <label class="rating-label">
+                  <input type="radio" name="saerhedsgrad" value="" checked />
+                  Alle
+                </label>
+                <label class="rating-label">
+                  <input type="radio" name="saerhedsgrad" value="lav" /> Lav
+                </label>
+                <label class="rating-label">
+                  <input type="radio" name="saerhedsgrad" value="medium" />
+                  Medium
+                </label>
+                <label class="rating-label">
+                  <input type="radio" name="saerhedsgrad" value="svær" /> Svær
+                </label>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Sprog</label>
+              <div class="color-group">
+                <label class="color-label">
+                  <input type="checkbox" name="sprog" value="DA" /> Dansk
+                </label>
+                <label class="color-label">
+                  <input type="checkbox" name="sprog" value="EN" /> Engelsk
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-footer">
+            <button id="reset-filters" class="reset-button">Nulstil</button>
+            <button id="apply-filters" class="apply-button">Vis Spil</button>
+          </div>
+        </div>
+
+        <div id="games-container" class="games-container"></div>
+      </main>
+
+      <footer>
+        <p>2026 Find et spil</p>
+      </footer>
+    </div>
+
+    <dialog id="game-dialog">
+      <article class="dialog-content">
+        <img id="dialog-image" src="" alt="" class="game-image" />
+        <h2 id="dialog-title"></h2>
+        <dl id="dialog-facts" class="dialog-facts"></dl>
+        <p id="dialog-rules" class="dialog-rules"></p>
+        <h3>Lignende spil</h3>
+        <div id="dialog-similar" class="similar-list"></div>
+        <menu class="dialog-actions">
+          <button id="dialog-close" value="cancel">Luk</button>
+        </menu>
+      </article>
+    </dialog>
+
+    <div id="overlay" class="overlay"></div>
+    <script src="js/games.js"></script>
+    <script src="js/scriptui.js"></script>
+    <script src="js/scriptfilt.js"></script>
+  </body>
 </html>
