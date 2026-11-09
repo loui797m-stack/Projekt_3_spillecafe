@@ -250,9 +250,7 @@ header h1 {
     transition: var(--transition);
 }
  
-.checkbox-label:hover, .color-label:hover, .rating-label:hover {
-    background-color: var(--light-gray);
-}
+
  
 .checkbox-label input, .color-label input, .rating-label input {
     width: 18px;

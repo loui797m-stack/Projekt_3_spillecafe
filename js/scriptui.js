@@ -79,12 +79,7 @@ function showGameDialog(gameId) {
         <dt>Placering</dt><dd>${game.placering}</dd>
     `;
  
-    // Reglerne ligger i mappen "regler" (ret stien hvis jeres filer ligger andre steder)
-    document.getElementById('dialog-rules').innerHTML = `
-        <a href="regler/${encodeURI(game.regler.billede)}" target="_blank">Se regler</a>
-        <a href="regler/${encodeURI(game.regler.video)}" target="_blank">Se video</a>
-    `;
- 
+
     document.getElementById('dialog-similar').innerHTML = game.lignendeSpil
         .map(id => games.find(g => g.id === id))
         .map(g => `<button class="similar-button" onclick="showGameDialog('${g.id}')">${g.navn}</button>`)
